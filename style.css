@@ -1,0 +1,32 @@
+html{
+    text-align: center;
+}
+
+.card{
+    margin: 5px;
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+.card-body{
+    display: contents;
+    align-items: center;
+}
+
+.row{
+    justify-content: center;
+    text-align: center;
+}
+
+body{
+    margin: 10px;
+}
+
+#cabecalho h1{
+    font-size: 30px;
+}
+
+.titulo{
+    margin: 5px;
+}
