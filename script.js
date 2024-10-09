@@ -1,13 +1,13 @@
-var random = Math.floor(Math.random() * 100) + 1;
+var random = Math.floor(Math.random() * 100) + 1; //seleciona um numero entre um e 100
 
 async function buscar() {
-    var input = document.getElementById('inputPokemon')
+    var input = document.getElementById('inputPokemon') //pega o elemento cm o id 'inputPokemon'
 
-    var escolhido = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`).then(resposta => {return resposta.json()});
-    var escolhido1 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${random}`).then(resposta => {return resposta.json()});
-    var selecionado = await fetch(`https://pokeapi.co/api/v2/pokemon/${input.value}`).then(resposta => {return resposta.json()});
-    var selecionado1 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${input.value}`).then(resposta => {return resposta.json()});
-    var area = document.getElementById('cardsArea')
+    var escolhido = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`).then(resposta => {return resposta.json()}); //pega o json do pokemon escolhido aleatoriamente
+    var escolhido1 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${random}`).then(resposta => {return resposta.json()}); //pega o json do pokemon escolhido aleatoriamente - pagina para pegar a cor
+    var selecionado = await fetch(`https://pokeapi.co/api/v2/pokemon/${input.value}`).then(resposta => {return resposta.json()}); //pega o json do pokemon escolhido pelo jogador
+    var selecionado1 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${input.value}`).then(resposta => {return resposta.json()}); //pega o json do pokemon escolhido jogador - pagina para pegar a cor
+    var area = document.getElementById('cardsArea') //pega o elemento cm o id 'cardsArea'
 
     var tipo1 = selecionado.types[0].type.name
     if(selecionado.types[1] == undefined){
@@ -48,17 +48,21 @@ async function buscar() {
     if(ataque == Rataque){
       var boolAtaque = 'green'
     } else if(ataque < Rataque){
-      var boolAtaque = 'orange'
+      ataque += ' <'
+      var boolAtaque = 'red'
     } else{
+      ataque += ' >'
        var boolAtaque = 'red'
     }
 
     if(defesa == Rdefesa){
       var boolDefesa = 'green'
     } else if(defesa < Rdefesa){
-      var boolDefesa = 'orange'
+      defesa += ' <'
+      var boolDefesa = 'red'
     } else{
-       var boolDefesa = 'red'
+      defesa += ' >'
+      var boolDefesa = 'red'
     }
 
     if(cor == Rcor){
@@ -70,21 +74,25 @@ async function buscar() {
     if(altura == Raltura){
       var boolAltura = 'green'
     } else if(altura < Raltura){
-      var boolAltura = 'orange'
+      altura += ' <'
+      var boolAltura = 'red'
     } else{
-       var boolAltura = 'red'
+      altura += ' >'
+      var boolAltura = 'red'
     }
 
     if(peso == Rpeso){
       var boolPeso = 'green'
     } else if(peso < Rpeso){
-      var boolPeso = 'orange'
+      peso += ' <'
+      var boolPeso = 'red'
     } else{
-       var boolPeso = 'red'
+      peso += ' >'
+      var boolPeso = 'red'
     }
 
-    
-    area.innerHTML += `<div class="row">
+    var auxArea = area.innerHTML
+    area.innerHTML = `<div class="row">
         <div class="card col-lg-1">
           <div class="card-body">
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selecionado.id}.png">
@@ -126,4 +134,6 @@ async function buscar() {
           </div>
         </div>
       </div>`;
+
+      area.innerHTML += auxArea
 }
